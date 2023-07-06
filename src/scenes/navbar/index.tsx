@@ -8,19 +8,23 @@ import { useState } from "react";
 import ActionButton from "@/shared/ActionButton";
 
 type Props = {
+  isTopOfPage: boolean;
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
+const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const flexDetween = "flex items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
   // console.log(isAboveMediumScreens);
+  const navbarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow";
 
   return (
     <nav>
-      <div className={`${flexDetween} fixed top-0 z-30 w-full py-6`}>
+      <div
+        className={`${navbarBackground} ${flexDetween} fixed top-0 z-30 w-full py-6`}
+      >
         <div className={`${flexDetween} mx-auto w-5/6`}>
           <div className={`${flexDetween} w-full gap-16`}>
             <img src={Logo} alt="Logo" />
